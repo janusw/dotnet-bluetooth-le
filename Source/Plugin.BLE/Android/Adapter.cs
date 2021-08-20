@@ -235,6 +235,8 @@ namespace Plugin.BLE.Android
             {
                 // enable Bluetooth 5 Advertisement Extensions on Android 8.0 and above
                 ssb.SetLegacy(false);
+                if (_bluetoothAdapter.IsLeCodedPhySupported)
+                    ssb.SetPhy(global::Android.Bluetooth.BluetoothPhy.LeCoded);
             }
             //ssb.SetCallbackType(ScanCallbackType.AllMatches);
 
@@ -264,7 +266,9 @@ namespace Plugin.BLE.Android
                         Trace.Message($"Device Name Scan Filters: {string.Join(", ", scanFilterOptions.DeviceNames)}");
                     }
                 }
-                _bluetoothAdapter.BluetoothLeScanner.StartScan(scanFilters, ssb.Build(), _api21ScanCallback);
+                var ss = ssb.Build();
+                Trace.Message($"Phy: {ss.Phy}");
+                _bluetoothAdapter.BluetoothLeScanner.StartScan(scanFilters, ss, _api21ScanCallback);
             }
             else
             {
