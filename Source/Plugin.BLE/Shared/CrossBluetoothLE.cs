@@ -29,7 +29,7 @@ namespace Plugin.BLE
 
         static IBluetoothLE CreateImplementation()
         {
-#if NETSTANDARD
+#if (NETSTANDARD && !NET6_0_OR_GREATER)
             return null;
 #else
             var implementation = new BleImplementation();
