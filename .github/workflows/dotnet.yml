@@ -35,10 +35,7 @@ jobs:
         script-path: .build/build.cake
         target: Clean
     - name: Restore
-      uses: cake-build/cake-action@v1.4.1
-      with:
-        script-path: .build/build.cake
-        target: Restore
+      run: dotnet restore ./Source/BLE.sln
     - name: Build Libs
       uses: cake-build/cake-action@v1.4.1
       with:
