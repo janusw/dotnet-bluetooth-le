@@ -41,10 +41,11 @@ jobs:
     - name: Build MVVMCross.Plugins.BLE NuGet
       run: msbuild .\Source\MvvmCross.Plugins.BLE\MvvmCross.Plugins.BLE.csproj /p:Configuration=Release /t:restore,build,pack /p:PackageOutputPath=./nuget /p:Version=$(git describe) /p:ContinuousIntegrationBuild=true /p:DeterministicSourcePaths=false
     - name: Build Clients
-      uses: cake-build/cake-action@v1.4.1
-      with:
-        script-path: .build/build.cake
-        target: BuildClients
+      run: |
+        msbuild .\Source\BLE.Client\BLE.Client\BLE.Client.csproj /p:Configuration=Release /t:restore,build /p:ContinuousIntegrationBuild=true /p:DeterministicSourcePaths=false
+        msbuild .\Source\BLE.Client\BLE.Client.Droid\BLE.Client.Droid.csproj /p:Configuration=Release /t:restore,build /p:ContinuousIntegrationBuild=true /p:DeterministicSourcePaths=false
+        msbuild .\Source\BLE.Client\BLE.Client.iOS\BLE.Client.iOS.csproj /p:Configuration=Release /t:restore,build /p:ContinuousIntegrationBuild=true /p:DeterministicSourcePaths=false
+        msbuild .\Source\BLE.Client\BLE.Client.macOS\BLE.Client.macOS.csproj /p:Configuration=Release /t:restore,build /p:ContinuousIntegrationBuild=true /p:DeterministicSourcePaths=false
     - name: Builds Tests
       uses: cake-build/cake-action@v1.4.1
       with:
