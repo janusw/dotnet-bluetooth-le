@@ -36,11 +36,10 @@ jobs:
         target: Clean
     - name: Restore
       run: dotnet restore ./Source/BLE.sln
-    - name: Build Libs
-      uses: cake-build/cake-action@v1.4.1
-      with:
-        script-path: .build/build.cake
-        target: BuildLibs
+    - name: Build Plugin.BLE NuGet
+      run: msbuild .\Source\Plugin.BLE\Plugin.BLE.csproj /p:Configuration=Release /t:restore,build,pack /p:PackageOutputPath=./nuget /p:Version=$(git describe) /p:ContinuousIntegrationBuild=true /p:DeterministicSourcePaths=false
+    - name: Build MVVMCross.Plugins.BLE NuGet
+      run: msbuild .\Source\MvvmCross.Plugins.BLE\MvvmCross.Plugins.BLE.csproj /p:Configuration=Release /t:restore,build,pack /p:PackageOutputPath=./nuget /p:Version=$(git describe) /p:ContinuousIntegrationBuild=true /p:DeterministicSourcePaths=false
     - name: Build Clients
       uses: cake-build/cake-action@v1.4.1
       with:
@@ -56,10 +55,6 @@ jobs:
       with:
         script-path: .build/build.cake
         target: RunTests
-    - name: Build Plugin.BLE NuGet
-      run: msbuild .\Source\Plugin.BLE\Plugin.BLE.csproj /p:Configuration=Release /t:restore,build,pack /p:PackageOutputPath=./nuget /p:Version=$(git describe) /p:ContinuousIntegrationBuild=true /p:DeterministicSourcePaths=false
-    - name: Build MVVMCross.Plugins.BLE NuGet
-      run: msbuild .\Source\MvvmCross.Plugins.BLE\MvvmCross.Plugins.BLE.csproj /p:Configuration=Release /t:restore,build,pack /p:PackageOutputPath=./nuget /p:Version=$(git describe) /p:ContinuousIntegrationBuild=true /p:DeterministicSourcePaths=false
     - name: Upload packages
       uses: actions/upload-artifact@v3
       with:
