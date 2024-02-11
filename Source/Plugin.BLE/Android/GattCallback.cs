@@ -170,20 +170,66 @@ namespace Plugin.BLE.Android
 
         public override void OnCharacteristicRead(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, GattStatus status)
         {
-            base.OnCharacteristicRead(gatt, characteristic, status);
+#if NET6_0_OR_GREATER
+            if (!OperatingSystem.IsAndroidVersionAtLeast(33))
+#else
+            if (global::Android.OS.Build.VERSION.SdkInt < global::Android.OS.BuildVersionCodes.Tiramisu)
+#endif
+            {
+                base.OnCharacteristicRead(gatt, characteristic, status);
 
-            Trace.Message("OnCharacteristicRead: value {0}; status {1}", characteristic.GetValue().ToHexString(), status);
+                Trace.Message("OnCharacteristicRead: value {0}; status {1}", characteristic.GetValue().ToHexString(), status);
 
-            CharacteristicValueRead?.Invoke(this, new CharacteristicReadCallbackEventArgs(characteristic, status));
+                CharacteristicValueRead?.Invoke(this, new CharacteristicReadCallbackEventArgs(characteristic, status));
+            }
+        }
+
+        public override void OnCharacteristicRead(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, byte[] value, GattStatus status)
+        {
+#if NET6_0_OR_GREATER
+            if (OperatingSystem.IsAndroidVersionAtLeast(33))
+#else
+            if (global::Android.OS.Build.VERSION.SdkInt >= global::Android.OS.BuildVersionCodes.Tiramisu)
+#endif
+            {
+                base.OnCharacteristicRead(gatt, characteristic, value, status);
+
+                Trace.Message("OnCharacteristicRead: value {0}; status {1}", value.ToHexString(), status);
+
+                CharacteristicValueRead?.Invoke(this, new CharacteristicReadCallbackEventArgs(characteristic, status));
+            }
         }
 
         public override void OnCharacteristicChanged(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic)
         {
-            base.OnCharacteristicChanged(gatt, characteristic);
+#if NET6_0_OR_GREATER
+            if (!OperatingSystem.IsAndroidVersionAtLeast(33))
+#else
+            if (global::Android.OS.Build.VERSION.SdkInt < global::Android.OS.BuildVersionCodes.Tiramisu)
+#endif
+            {
+                base.OnCharacteristicChanged(gatt, characteristic);
 
-            Trace.Message("OnCharacteristicChanged: value {0}", characteristic.GetValue().ToHexString());
+                Trace.Message("OnCharacteristicChanged: value {0}", characteristic.GetValue().ToHexString());
 
-            CharacteristicValueUpdated?.Invoke(this, new CharacteristicReadCallbackEventArgs(characteristic, GattStatus.Success));
+                CharacteristicValueUpdated?.Invoke(this, new CharacteristicReadCallbackEventArgs(characteristic, GattStatus.Success));
+            }
+        }
+
+        public override void OnCharacteristicChanged(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, byte[] value)
+        {
+#if NET6_0_OR_GREATER
+            if (OperatingSystem.IsAndroidVersionAtLeast(33))
+#else
+            if (global::Android.OS.Build.VERSION.SdkInt >= global::Android.OS.BuildVersionCodes.Tiramisu)
+#endif
+            {
+                base.OnCharacteristicChanged(gatt, characteristic, value);
+
+                Trace.Message("OnCharacteristicChanged: value {0}", value.ToHexString());
+
+                CharacteristicValueUpdated?.Invoke(this, new CharacteristicReadCallbackEventArgs(characteristic, GattStatus.Success));
+            }
         }
 
         public override void OnCharacteristicWrite(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, GattStatus status)
@@ -231,11 +277,34 @@ namespace Plugin.BLE.Android
 
         public override void OnDescriptorRead(BluetoothGatt gatt, BluetoothGattDescriptor descriptor, GattStatus status)
         {
-            base.OnDescriptorRead(gatt, descriptor, status);
+#if NET6_0_OR_GREATER
+            if (!OperatingSystem.IsAndroidVersionAtLeast(33))
+#else
+            if (global::Android.OS.Build.VERSION.SdkInt < global::Android.OS.BuildVersionCodes.Tiramisu)
+#endif
+            {
+                base.OnDescriptorRead(gatt, descriptor, status);
 
-            Trace.Message("OnDescriptorRead: {0}", descriptor.GetValue()?.ToHexString());
+                Trace.Message("OnDescriptorRead: {0}", descriptor.GetValue()?.ToHexString());
 
-            DescriptorValueRead?.Invoke(this, new DescriptorCallbackEventArgs(descriptor, GetExceptionFromGattStatus(status)));
+                DescriptorValueRead?.Invoke(this, new DescriptorCallbackEventArgs(descriptor, GetExceptionFromGattStatus(status)));
+            }
+        }
+
+        public override void OnDescriptorRead(BluetoothGatt gatt, BluetoothGattDescriptor descriptor, GattStatus status, byte[] value)
+        {
+#if NET6_0_OR_GREATER
+            if (OperatingSystem.IsAndroidVersionAtLeast(33))
+#else
+            if (global::Android.OS.Build.VERSION.SdkInt >= global::Android.OS.BuildVersionCodes.Tiramisu)
+#endif
+            {
+                base.OnDescriptorRead(gatt, descriptor, status, value);
+
+                Trace.Message("OnDescriptorRead: {0}", value.ToHexString());
+
+                DescriptorValueRead?.Invoke(this, new DescriptorCallbackEventArgs(descriptor, GetExceptionFromGattStatus(status)));
+            }
         }
 
         private Exception GetExceptionFromGattStatus(GattStatus status)
