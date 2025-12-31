@@ -3,10 +3,12 @@ using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using MvvmCross.Core;
-using Xamarin.Forms;
 using MvvmCross.Forms.Platforms.Android.Views;
 using MvvmCross.Platforms.Android.Views;
 using System.Threading.Tasks;
+using Microsoft.Maui.Controls.Compatibility;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui;
 
 namespace BLE.Client.Droid
 {
