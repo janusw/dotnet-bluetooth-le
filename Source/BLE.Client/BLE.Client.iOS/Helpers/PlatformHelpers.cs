@@ -1,7 +1,9 @@
 ﻿using System.Threading.Tasks;
-using Xamarin.Essentials;
-using Xamarin.Forms;
 using BLE.Client.Helpers;
+using Microsoft.Maui.Controls.Compatibility;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui;
+using Microsoft.Maui.ApplicationModel;
 
 [assembly: Dependency(typeof(BLE.Client.iOS.Helpers.PlatformHelpers))]
 namespace BLE.Client.iOS.Helpers

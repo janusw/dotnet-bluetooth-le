@@ -20,7 +20,7 @@ namespace BLE.Client.iOS
             return result;
         }
 
-        protected override Xamarin.Forms.Application CreateFormsApplication()
+        protected override Microsoft.Maui.Controls.Application CreateFormsApplication()
         {
             return new BleMvxFormsApp();
         }

@@ -1,17 +1,14 @@
-﻿using System;
 using Foundation;
-using MvvmCross.Core;
-using MvvmCross.Forms.Platforms.Ios.Core;
-using UIKit;
+using Microsoft.Maui;
+using Microsoft.Maui.Hosting;
 
-namespace BLE.Client.iOS
+namespace BLE.Client.iOS;
+
+// TODO: Platform specific bootstrapping code should be migrated from AppDelegate.cs.original to AppDelegate.cs or MauiProgram.cs.
+// See iOS App Lifecycle: https://learn.microsoft.com/dotnet/maui/fundamentals/app-lifecycle#ios
+
+[Register(nameof(AppDelegate))]
+public class AppDelegate : MauiUIApplicationDelegate
 {
-    [Register("AppDelegate")]
-    public partial class AppDelegate : MvxFormsApplicationDelegate
-    {
-        protected override void RegisterSetup()
-        {
-            this.RegisterSetupType<Setup>();
-        }
-    }
+    protected override MauiApp CreateMauiApp() => MauiProgram.CreateMauiApp();
 }
