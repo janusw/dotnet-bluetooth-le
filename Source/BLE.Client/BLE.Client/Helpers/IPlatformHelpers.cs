@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Xamarin.Essentials;
+using Microsoft.Maui.ApplicationModel;
 namespace BLE.Client.Helpers
 {
     public interface IPlatformHelpers

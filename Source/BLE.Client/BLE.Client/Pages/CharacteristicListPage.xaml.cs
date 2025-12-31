@@ -1,6 +1,8 @@
 ﻿using BLE.Client.ViewModels;
 using MvvmCross.Forms.Views;
-using Xamarin.Forms;
+using Microsoft.Maui.Controls.Compatibility;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui;
 
 namespace BLE.Client.Pages
 {

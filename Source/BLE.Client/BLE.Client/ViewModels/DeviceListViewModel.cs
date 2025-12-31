@@ -14,8 +14,11 @@ using Plugin.BLE.Abstractions.Extensions;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross;
-using Xamarin.Essentials;
-using Xamarin.Forms;
+using Microsoft.Maui.Controls.Compatibility;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui;
+using Microsoft.Maui.ApplicationModel;
+using Microsoft.Maui.Storage;
 
 namespace BLE.Client.ViewModels
 {

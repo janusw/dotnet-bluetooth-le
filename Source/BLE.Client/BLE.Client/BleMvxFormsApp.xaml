@@ -1,5 +1,5 @@
-﻿<mvx:MvxFormsApplication
-    xmlns="http://xamarin.com/schemas/2014/forms"
+<mvx:MvxFormsApplication
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:mvx="clr-namespace:MvvmCross.Forms.Core;assembly=MvvmCross.Forms"
     xmlns:converters="clr-namespace:BLE.Client.Converters;assembly=BLE.Client"
