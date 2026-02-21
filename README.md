@@ -10,13 +10,19 @@ Build status: [![Build status](https://github.com/dotnet-bluetooth-le/dotnet-blu
 
 [Release Notes](doc/changelog.md)
 
-| Platform        | Version           | Limitations |
-| --------------- | ----------------- | ----------- |
-| Xamarin.Android | 4.3               |             |
-| Xamarin.iOS     | 7.0               |             |
-| Xamarin.Mac     | 10.9 (Mavericks)  | >= 2.1.0    |
-| Xamarin.UWP     | 1709 - 10.0.16299 | >= 2.2.0    |
-| MAUI (Android, iOS, Mac, WinUI) |   | >= 3.0.0    |
+Supported .NET and OS versions (targeted and minimum) per release:
+
+| Plugin.BLE      |   3.0 |   3.0 |   3.1 |   3.1 |   3.2 |   3.2 |   3.3 |   3.3 |
+|:----------------|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|
+| .NET            |   6.0 |   7.0 |   7.0 |   8.0 |   8.0 |   9.0 |   9.0 |  10.0 |
+| Android: target |    33 |    33 |    33 |    34 |    34 |    35 |    35 |    36 |
+| Android: min    |    21 |    21 |    21 |    21 |    21 |    21 |    21 |    21 |
+| iOS: target     |  16.1 |  16.1 |  16.1 |  17.2 |  18.0 |  18.0 |  18.0 |  26.0 |
+| iOS: min        |  10.0 |  10.0 |  10.0 |  10.0 |  12.2 |  12.2 |  12.2 |  12.2 |
+| Mac: target     |  16.1 |  16.1 |  16.1 |  17.2 |  18.0 |  18.0 |  18.0 |  26.0 |
+| Mac: min        |  13.1 |  13.1 |  13.1 |  13.1 |  15.0 |  15.0 |  15.0 |  15.0 |
+| Windows: target | 19041 | 19041 | 19041 | 19041 | 19041 | 19041 | 19041 | 19041 |
+| Windows: min    | 17763 | 17763 | 17763 | 17763 | 17763 | 17763 | 17763 | 17763 |
 
 ## Nuget Packages
 
